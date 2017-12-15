@@ -1,10 +1,15 @@
+from flask import Flask, jsonify
+
+from Config import LAST_MEASUREMENT_KEY
+from RedisUtils import get_redis_connection
+
 APP_NAME = 'baby_sensor'
-
-from flask import Flask
-
 app = Flask(APP_NAME)
 
 
-@app.route("/temperature")
-def temperature():
-    return 25
+@app.route("/measurements/last")
+def last_measurement():
+    redis_conn = get_redis_connection()
+    last_measurement_key = redis_conn.get(LAST_MEASUREMENT_KEY)
+    measurement = redis_conn.get(last_measurement_key)
+    return jsonify(measurement)
