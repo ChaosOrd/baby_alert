@@ -13,8 +13,8 @@ def last_measurement():
     last_measurement_key = redis_conn.get(LAST_MEASUREMENT_KEY)
     keys = [TIME_KEY, TEMPERATURE_KEY, HUMIDITY_KEY]
     measurement = redis_conn.hmget(last_measurement_key, [TIME_KEY, TEMPERATURE_KEY, HUMIDITY_KEY])
-    
-    return jsonify(convert_keys_and_values_to_dict(keys, measurement))
+
+    return jsonify(**convert_keys_and_values_to_dict(keys, measurement))
 
 
 if __name__ == "__main__":
