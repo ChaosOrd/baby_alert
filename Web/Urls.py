@@ -13,3 +13,7 @@ def last_measurement():
     last_measurement_key = redis_conn.get(LAST_MEASUREMENT_KEY)
     measurement = redis_conn.get(last_measurement_key)
     return jsonify(measurement)
+
+
+if __name__ == "__main__":
+    app.run(host='localhost')
