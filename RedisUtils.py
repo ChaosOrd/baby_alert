@@ -9,4 +9,4 @@ def get_redis_connection():
 
 
 def convert_keys_and_values_to_dict(keys, values):
-    return {key: value for key, value in zip(keys, values)}
+    return {key: value.decode('utf-8') for key, value in zip(keys, values)}
