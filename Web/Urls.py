@@ -46,7 +46,7 @@ def measurements(from_date=None):
 
 
 def _get_measurement_by_key(redis_conn, measurement_key, keys_to_retrieve):
-    return convert_keys_and_values_to_dict(keys_to_retrieve, redis_conn.hmget(measurement_key))
+    return convert_keys_and_values_to_dict(keys_to_retrieve, redis_conn.hmget(measurement_key, keys_to_retrieve))
 
 
 def _get_last_measurement():
