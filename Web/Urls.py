@@ -1,10 +1,15 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 from Config import LAST_MEASUREMENT_KEY, TIME_KEY, TEMPERATURE_KEY, HUMIDITY_KEY
 from RedisUtils import get_redis_connection, convert_keys_and_values_to_dict
 
 APP_NAME = 'baby_sensor'
 app = Flask(APP_NAME)
+
+
+@app.route("/")
+def top():
+    return render_template('Templates/top.html')
 
 
 @app.route("/measurements/last")
