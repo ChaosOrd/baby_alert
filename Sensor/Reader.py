@@ -26,13 +26,13 @@ def save_readings(redis_conn: redis.Redis, temperature: float, humidity: float):
 
 
 def read_and_save_data():
-    with SHT1x(data_pin=DATA_PIN, sck_pin=SCX_PIN, gpio_mode=GPIO.BCM) as sensor:
-        redis_conn = get_redis_connection()
-        while True:
+    while True:
+        with SHT1x(data_pin=DATA_PIN, sck_pin=SCX_PIN, gpio_mode=GPIO.BCM) as sensor:
             temperature = sensor.read_temperature()
             humidity = sensor.read_humidity()
-            save_readings(redis_conn, temperature, humidity)
-            time.sleep(READINGS_INTERVAL)
+        redis_conn = get_redis_connection()
+        save_readings(redis_conn, temperature, humidity)
+        time.sleep(READINGS_INTERVAL)
 
 
 if __name__ == '__main__':
