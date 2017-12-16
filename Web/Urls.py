@@ -38,7 +38,7 @@ def measurements(from_date=None):
         if measurement_time <= from_date:
             break
         all_measurements.append(measurement)
-        if PREV_KEY not in measurement:
+        if measurement[PREV_KEY] is None:
             break
         measurement = _get_measurement_by_key(redis_conn, measurement[PREV_KEY], keys)
 

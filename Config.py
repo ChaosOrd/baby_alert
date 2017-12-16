@@ -1,5 +1,5 @@
 # The interval between temperature readings in seconds
-READINGS_INTERVAL = 10
+READINGS_INTERVAL = 600
 DATA_PIN = 3
 SCX_PIN = 2
 REDIS_HOST = 'localhost'
