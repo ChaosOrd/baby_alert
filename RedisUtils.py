@@ -9,4 +9,4 @@ def get_redis_connection():
 
 
 def convert_keys_and_values_to_dict(keys, values):
-    return {key: value.decode('utf-8') if isinstance(value, bytearray) else value for key, value in zip(keys, values)}
+    return {key: value.decode('utf-8') if value is not None else None for key, value in zip(keys, values)}
