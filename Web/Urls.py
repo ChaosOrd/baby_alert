@@ -9,7 +9,7 @@ app = Flask(APP_NAME)
 
 @app.route("/")
 def top():
-    return render_template('Templates/top.html')
+    return render_template('top.html')
 
 
 @app.route("/measurements/last")
@@ -21,5 +21,6 @@ def last_measurement():
 
     return jsonify(**convert_keys_and_values_to_dict(keys, measurement))
 
+
 if __name__ == "__main__":
-   app.run()
+    app.run()
