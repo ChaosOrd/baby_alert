@@ -34,15 +34,12 @@ def measurements(from_date=None):
     measurement = _get_measurement_by_key(redis_conn, last_measurement_key, keys)
     all_measurements = []
     while True:
-        try:
-            measurement_time = dateutil.parser.parse(measurement[TIME_KEY])
-        except TypeError:
-            print('Type error in measurement {}'.format(measurement))
-            raise
+        measurement_time = dateutil.parser.parse(measurement[TIME_KEY])
         if measurement_time <= from_date:
             break
         all_measurements.append(measurement)
-        if measurement[PREV_KEY] is None:
+        # If this is the last measurement or previous measurements expired
+        if measurement[PREV_KEY] is None or not redis_conn.exists(measurement[PREV_KEY]):
             break
         measurement = _get_measurement_by_key(redis_conn, measurement[PREV_KEY], keys)
 
