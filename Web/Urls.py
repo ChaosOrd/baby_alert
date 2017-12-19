@@ -34,7 +34,11 @@ def measurements(from_date=None):
     measurement = _get_measurement_by_key(redis_conn, last_measurement_key, keys)
     all_measurements = []
     while True:
-        measurement_time = dateutil.parser.parse(measurement[TIME_KEY])
+        try:
+            measurement_time = dateutil.parser.parse(measurement[TIME_KEY])
+        except TypeError:
+            print('Type error in measurement {}'.format(measurement))
+            raise
         if measurement_time <= from_date:
             break
         all_measurements.append(measurement)
