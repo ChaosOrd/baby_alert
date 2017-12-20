@@ -16,7 +16,7 @@ function drawCurveTypes(data, status) {
     });
 
     var temperatureView =  new google.visualization.DataView(graphData);
-    temperatureView.setColumns([1]);
+    temperatureView.setColumns([0, 1]);
     var options = {
     hAxis: {
       title: 'Time'
