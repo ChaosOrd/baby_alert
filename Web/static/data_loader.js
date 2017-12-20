@@ -13,7 +13,7 @@ function drawCurveTypes(data, status) {
     $.each(data.measurements, function(idx, measurement) {
         var measurementTimeUtc = new Date(measurement.time);
         var measurementTime = new Date(measurementTimeUtc.getTime() +
-            measurementTimeUtc.getTimezoneOffset.getTimezoneOffset()*60*1000)
+            measurementTimeUtc.getTimezoneOffset()*60*1000)
         graphData.addRow([measurementTime, Number(measurement.temperature), Number(measurement.humidity)]);
     });
 
