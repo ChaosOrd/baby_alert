@@ -5,11 +5,11 @@ function retrieveData() {
 }
 
 function drawCurveTypes(data, status) {
-      var data = new google.visualization.DataTable();
-      data.addColumn('datetime', 'Time');
-      data.addColumn('number', 'Temperature');
+      var graphData = new google.visualization.DataTable();
+      graphData.addColumn('datetime', 'Time');
+      graphData.addColumn('number', 'Temperature');
 
-      /* data.addRows([
+      /* graphData.addRows([
         [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
         [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
         [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
@@ -37,13 +37,13 @@ function drawCurveTypes(data, status) {
       };
 
       var chart = new google.visualization.LineChart($('#temperatureChart'));
-      chart.draw(data, options); */
+      chart.draw(graphData, options); */
       alert('hello');
 }
 
 
 $(document).ready(function() {
     google.charts.load('current', {packages: ['corechart', 'line']});
-    google.charts.setOnLoadCallback(drawCurveTypes);
+    google.charts.setOnLoadCallback(retrieveData);
     retrieveData();
 });
