@@ -8,6 +8,7 @@ function drawCurveTypes(data, status) {
     var graphData = new google.visualization.DataTable();
     graphData.addColumn('datetime', 'Time');
     graphData.addColumn('number', 'Temperature');
+    graphData.addColumn('number', 'Humidity');
 
     $.each(data.measurements, function(idx, measurement) {
         var measurementTime = new Date(measurement.time);
