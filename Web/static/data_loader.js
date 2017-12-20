@@ -11,7 +11,8 @@ function drawCurveTypes(data, status) {
     graphData.addColumn('number', 'Humidity');
 
     $.each(data.measurements, function(idx, measurement) {
-        var measurementTime = new Date(measurement.time + getTimezoneOffset.getTimezoneOffset()*60*1000);
+        var measurementTime = new Date(measurement.time +
+            measurement.time.getTimezoneOffset.getTimezoneOffset()*60*1000);
         graphData.addRow([measurementTime, Number(measurement.temperature), Number(measurement.humidity)]);
     });
 
