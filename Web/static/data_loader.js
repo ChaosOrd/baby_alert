@@ -1,8 +1,7 @@
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawCurveTypes);
+
 
 function retrieveData() {
-    $.get({"/measurements", drawCurveTypes});
+    $.get("/measurements", drawCurveTypes);
 }
 
 function drawCurveTypes(data, status) {
@@ -42,4 +41,8 @@ function drawCurveTypes(data, status) {
 }
 
 
-$(document).ready(drawCurveTypes);
+$(document).ready(function() {
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawCurveTypes);
+    retrieveData();
+});
