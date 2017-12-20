@@ -18,15 +18,14 @@ function drawCurveTypes(data, status) {
     var temperatureView =  new google.visualization.DataView(graphData);
     temperatureView.setColumns([0, 1]);
     var options = {
-    hAxis: {
-      title: 'Time'
-    },
     vAxis: {
-      title: 'Temperature'
-    },
+        title: 'Temperature'
+        },
     series: {
-      1: {curveType: 'function'}
-    }
+        1: {curveType: 'function'}
+        }
+    width: 800
+    height: 400
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('temperatureChart'));
