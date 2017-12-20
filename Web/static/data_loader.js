@@ -29,7 +29,7 @@ function drawCurveTypes(data, status) {
     }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById(temperatureChart));
+    var chart = new google.visualization.LineChart(document.getElementById('temperatureChart'));
     chart.draw(temperatureView, options);
 }
 
