@@ -1,11 +1,14 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawCurveTypes);
 
-function drawCurveTypes() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Dogs');
-      data.addColumn('number', 'Cats');
+function retrieveData() {
+    $.get({"/measurements", drawCurveTypes});
+}
+
+function drawCurveTypes(data, status) {
+      /* var data = new google.visualization.DataTable();
+      data.addColumn('datetime', 'Time');
+      data.addColumn('number', 'Temperature');
 
       data.addRows([
         [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
@@ -27,13 +30,16 @@ function drawCurveTypes() {
           title: 'Time'
         },
         vAxis: {
-          title: 'Popularity'
+          title: 'Temperature'
         },
         series: {
           1: {curveType: 'function'}
         }
       };
 
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
+      var chart = new google.visualization.LineChart($('#temperatureChart'));
+      chart.draw(data, options); */
+}
+
+
+$(document).ready(drawCurveTypes);
