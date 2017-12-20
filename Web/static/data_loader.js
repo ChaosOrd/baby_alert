@@ -29,7 +29,7 @@ function drawCurveTypes(data, status) {
     };
 
     var chart = new google.visualization.LineChart($('#temperatureChart'));
-    chart.draw(temperatureView, options); */
+    chart.draw(temperatureView, options);
 }
 
 
