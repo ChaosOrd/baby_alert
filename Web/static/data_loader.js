@@ -23,7 +23,7 @@ function drawCurveTypes(data, status) {
         },
         series: {
             1: {curveType: 'function'}
-        }
+        },
         width: 800,
         height: 400
     };
