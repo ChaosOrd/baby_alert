@@ -12,7 +12,7 @@ function drawCurveTypes(data, status) {
 
     $.each(data.measurements, function(idx, measurement) {
         var measurementTime = new Date(measurement.time);
-        graphData.addRow([Number(measurementTime), Number(measurement.temperature), Number(measurement.humidity)]);
+        graphData.addRow([measurementTime, Number(measurement.temperature), Number(measurement.humidity)]);
     });
 
     var temperatureView =  new google.visualization.DataView(graphData);
