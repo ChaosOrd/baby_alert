@@ -24,8 +24,8 @@ function drawCurveTypes(data, status) {
         series: {
             1: {curveType: 'function'}
         },
-        width: 800,
-        height: 400
+        width: 1900,
+        height: 1000
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('temperatureChart'));
