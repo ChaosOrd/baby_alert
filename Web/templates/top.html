@@ -5,8 +5,16 @@
     <title>Baby Alert</title>
 </head>
 <body>
-    <button class="navbar-toggler" type="button">Temperature</button>
-    <button class="navbar-toggler" type="button">Humidity</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+        <ul class="navbar-nav mr-auto">
+            <li id="temperature_nav" class="nav-item active">
+                <a class="nav-link" href="#">Temperature</a>
+            </li>
+            <li id="humidity_nav" class="nav-item">
+                <a class="nav-link" href="#">Humidity</a>
+            </li>
+        </ul>
+    </nav>
     <div id="temperatureChart"></div>
     <div id="humidityChart"></div>
 </body>
@@ -16,6 +24,7 @@
 <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="static/js/data_loader.js"></script>
+<script type="text/javascript" src="static/js/navigation.js"></script>
 <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="static/bootstrap/css/bootstrap-grid.min.css">
 <link rel="stylesheet" href="static/bootstrap/css/bootstrap-reboot.min.css">

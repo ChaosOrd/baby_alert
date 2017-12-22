@@ -17,12 +17,13 @@ function drawCurveTypes(data, status) {
         graphData.addRow([measurementTime, Number(measurement.temperature), Number(measurement.humidity)]);
     });
 
+    drawTemperatureChart(graphData);
+    drawHumidityChart(graphData);
+
+function drawTemperatureChart(graphData) {
     var temperatureView =  new google.visualization.DataView(graphData);
     temperatureView.setColumns([0, 1]);
     var options = {
-        vAxis: {
-            title: 'Temperature'
-        },
         series: {
             1: {curveType: 'function'}
         },
@@ -34,6 +35,20 @@ function drawCurveTypes(data, status) {
     chart.draw(temperatureView, options);
 }
 
+function drawHumidityChart(graphData) {
+    var humidityView = new google.visualization.DataView(graphData);
+    humidityView.setColumns([0, 2]);
+        var options = {
+        series: {
+            1: {curveType: 'function'}
+        },
+        width: 1900,
+        height: 1000
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('humidityChart'));
+    chart.draw(humidityView, options);
+}
 
 $(document).ready(function() {
     google.charts.load('current', {packages: ['corechart', 'line']});
