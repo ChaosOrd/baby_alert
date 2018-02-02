@@ -1,4 +1,4 @@
-package com.example.chaosord.myapplication;
+package com.baby_alert;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view) {
         saveHost();
-        startListenToDeviceActivity();
+        startDisplayTemperatureActivity();
     }
 
-    private void startListenToDeviceActivity() {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+    private void startDisplayTemperatureActivity() {
+        Intent intent = new Intent(this, DisplayTemperatureActivity.class);
         String message = getDeviceHost();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);

@@ -1,4 +1,4 @@
-package com.example.chaosord.myapplication;
+package com.baby_alert;
 
 import org.junit.Test;
 
