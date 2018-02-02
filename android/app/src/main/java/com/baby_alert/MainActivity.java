@@ -15,7 +15,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private final static String DEVICE_HOST_KEY = "deviceHost";
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String HOST_EXTRA = "host";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startDisplayTemperatureActivity() {
-        Intent intent = new Intent(this, DisplayTemperatureActivity.class);
-        String message = getDeviceHost();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        Intent intent = new Intent(this, DisplayReadingsActivity.class);
+        String host = getDeviceHost();
+        intent.putExtra(HOST_EXTRA, host);
         startActivity(intent);
     }
 
