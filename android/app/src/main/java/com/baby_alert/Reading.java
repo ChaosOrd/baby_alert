@@ -6,15 +6,15 @@ import org.json.JSONObject;
 public class Reading {
     private float temperature;
     private float humidity;
-    private Exception exception;
+    private String failReason;
 
     Reading(float temperature, float humidity) {
         this.temperature = temperature;
         this.humidity = humidity;
     }
 
-    Reading(Exception e) {
-        exception = e;
+    Reading(String reason) {
+        failReason = reason;
     }
 
     public float getTemperature() {
@@ -25,8 +25,8 @@ public class Reading {
         return humidity;
     }
 
-    public Exception getException() {
-        return exception;
+    public String getFailReason() {
+        return failReason;
     }
 
     public static Reading parseResult(JSONObject json) throws JSONException {

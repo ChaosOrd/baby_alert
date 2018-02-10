@@ -7,6 +7,21 @@
     tools:context="com.baby_alert.DisplayReadingsActivity">
 
     <TextView
+        android:id="@+id/errorMsgLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Error Message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/humidityLabel" />
+
+    <TextView
         android:id="@+id/humidityValue"
         android:layout_width="155dp"
         android:layout_height="wrap_content"

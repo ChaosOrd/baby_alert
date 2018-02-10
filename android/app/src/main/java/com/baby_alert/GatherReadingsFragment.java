@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,11 +22,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class GatherReadingsFragment extends Fragment {
-    private ReadingsGatheredCallback readingsCallback;
+    private ReadingsGatheredCallback<Reading> readingsCallback;
     private static final String DEVICE_HOST = "HostKey";
+    private static final int TIMER_PERIOD = 10000;
     private static final String TAG = "GatherReadingsFragment";
-    private GatherReadingsTask gatherReadingsTask;
     private String deviceHost;
+    private Timer gatherReadingsTimer;
 
     public GatherReadingsFragment() {
         // Required empty public constructor
@@ -47,6 +51,13 @@ public class GatherReadingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         deviceHost = getArguments().getString(DEVICE_HOST);
         setRetainInstance(true);
+        gatherReadingsTimer = new Timer(true);
+        gatherReadingsTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                startGatherReadings();
+            }
+        }, 0, TIMER_PERIOD);
     }
 
     @Override
@@ -68,8 +79,8 @@ public class GatherReadingsFragment extends Fragment {
         readingsCallback = null;
     }
 
-    public void startGatheringReadings() {
-        gatherReadingsTask = new GatherReadingsTask(readingsCallback);
+    public void startGatherReadings() {
+        GatherReadingsTask gatherReadingsTask = new GatherReadingsTask(readingsCallback);
         gatherReadingsTask.execute(deviceHost);
     }
 

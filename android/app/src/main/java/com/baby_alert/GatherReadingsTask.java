@@ -13,12 +13,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 
 public class GatherReadingsTask extends AsyncTask<String, Void, Reading> {
 
     private ReadingsGatheredCallback<Reading> callback;
+    private final static int CONNECTION_TIMEOUT = 2000;
 
     private void setCallback(ReadingsGatheredCallback<Reading> callback) {
         this.callback = callback;
@@ -49,15 +52,19 @@ public class GatherReadingsTask extends AsyncTask<String, Void, Reading> {
             URL url = new URL(String.format("http://%s/measurements/last", host));
             JSONObject json = downloadUrl(url);
             return Reading.parseResult(json);
-        } catch (Exception e) {
-            return new Reading(e);
+        }
+        catch (SocketTimeoutException e) {
+            return new Reading("Could not connect, please check the URL");
+        }
+        catch (Exception e) {
+            return new Reading(e.getMessage());
         }
     }
 
     @Override
     protected void onPostExecute(Reading reading) {
-        if (reading.getException() != null) {
-            callback.onReadingNotGathered(reading.getException().getMessage());
+        if (reading.getFailReason() != null) {
+            callback.onReadingNotGathered(reading.getFailReason());
         }
         else {
             callback.onReadingGathered(reading);
@@ -74,7 +81,10 @@ public class GatherReadingsTask extends AsyncTask<String, Void, Reading> {
     }
 
     private JSONObject downloadUrl(URL url) throws JSONException, IOException {
-        InputStream is = url.openStream();
+        URLConnection con = url.openConnection();
+        con.setConnectTimeout(CONNECTION_TIMEOUT);
+        con.setReadTimeout(CONNECTION_TIMEOUT);
+        InputStream is = con.getInputStream();
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
